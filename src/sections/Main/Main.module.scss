@@ -1,0 +1,32 @@
+@import "styles/mixins";
+
+.main {
+  height: 100vh;
+  background: url('./img/bg-lg.png') no-repeat center;
+  background-size: cover;
+  position: relative;
+
+  &__content {
+    @include absoluteCenter;
+    @include lg-limit;
+  }
+
+  &__names {
+    color: $green-leaf;
+  }
+
+  &__date {
+    margin-top: 40px;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    margin-top: 50px;
+    max-width: 544px;
+    user-select: none;
+
+    &-bold {
+      font-weight: 600;
+    }
+  }
+}
