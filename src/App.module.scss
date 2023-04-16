@@ -2,8 +2,8 @@
 
 .App {
   @include hideScrollbar;
+  @include background;
 
-  background: $green-gradient;
   height: 100vh;
   overflow-y: auto;
 }

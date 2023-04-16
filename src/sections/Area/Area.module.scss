@@ -7,22 +7,13 @@
   align-items: center;
 
   @include media('<=tablet') {
+    @include background;
+
     padding: 55px 0 40px;
   }
 
   &__title {
-    @include cormorantFont;
-
-    font-size: 36px;
-    line-height: 44px;
-    font-weight: 700;
-    user-select: none;
-    text-transform: uppercase;
-
-    @include media('<=tablet') {
-      font-size: 25px;
-      line-height: 30px;
-    }
+    @include sectionTitle;
 }
 
   &__swiper {
@@ -66,22 +57,14 @@
   }
 
   &__location {
-    font-size: 22px;
-    line-height: 27px;
+    @include sectionContent;
+
     max-width: 346px;
     margin-top: 60px;
-    text-align: center;
 
     @include media('<=tablet') {
-      font-size: 18px;
-      line-height: 22px;
-      text-align: left;
       margin-top: 35px;
       max-width: 310px;
-    }
-
-    &_semibold {
-      font-weight: 600;
     }
   }
 

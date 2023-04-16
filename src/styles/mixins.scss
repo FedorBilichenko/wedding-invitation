@@ -33,3 +33,42 @@ $breakpoints: (
 @mixin cormorantFont {
   font-family: 'Cormorant', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+@mixin sectionTitle {
+  @include cormorantFont;
+
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 700;
+  user-select: none;
+  text-transform: uppercase;
+  text-align: center;
+
+  @include media('<=tablet') {
+    font-size: 25px;
+    line-height: 30px;
+    text-align: left;
+  }
+}
+
+@mixin sectionContent {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 300;
+  text-align: center;
+
+  &_bold {
+    font-weight: 600;
+  }
+
+
+  @include media('<=tablet') {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+  }
+}
+
+@mixin background {
+  background: $green-gradient;
+}

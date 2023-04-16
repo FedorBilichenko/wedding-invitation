@@ -1,5 +1,5 @@
 import styles from './App.module.scss'
-import { Main, Area } from './sections';
+import { Main, Area, Wishes } from './sections';
 import { AnimatePresence } from 'framer-motion';
 import './styles/index.scss';
 
@@ -10,6 +10,7 @@ const App = () => {
         <Main />
       </AnimatePresence>
       <Area />
+      <Wishes />
     </div>
   )
 }

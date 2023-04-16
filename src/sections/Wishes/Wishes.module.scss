@@ -1,0 +1,41 @@
+@import "styles/mixins";
+
+.wishes {
+  padding: 30px 0;
+
+  @include media('<=tablet') {
+    @include background;
+
+    padding: 30px 40px 0;
+  }
+
+  &__title {
+    @include sectionTitle;
+  }
+
+  &__content {
+    @include sectionContent;
+
+    max-width: 590px;
+    margin: 30px auto 0;
+
+    @include media('<=tablet') {
+      margin-top: 20px;
+    }
+  }
+
+  &__img {
+    width: 825px;
+    object-fit: contain;
+    margin-top: 30px;
+    position: relative;
+    left: calc(50% + 28px);
+    transform: translateX(-50%);
+
+    @include media('<=tablet') {
+      width: 706px;
+      left: calc(50% - 40px);
+      top: -40px;
+    }
+  }
+}
