@@ -1,0 +1,32 @@
+@import "styles/mixins";
+
+.schedule {
+  padding: 40px 0;
+
+  @include media('<=tablet') {
+    @include background;
+
+    padding: 55px 40px 66px;
+  }
+
+  &__title {
+    @include sectionTitle;
+  }
+
+  &__content {
+    margin: 30px auto 0;
+    max-width: 590px;
+
+    @include media('<=tablet') {
+      margin-top: 35px;
+    }
+  }
+
+  &__item {
+    margin-top: 30px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
