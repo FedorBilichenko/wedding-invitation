@@ -1,0 +1,22 @@
+@import "styles/mixins";
+
+.input {
+  @include animate(border-color, color);
+
+  border: 2px solid lighten($green-leaf, 10);
+  border-radius: 4px;
+  padding: 11px 17px;
+  outline: none;
+
+  &:focus {
+    border-color: $green-leaf
+  }
+
+  &::placeholder {
+    color: $grey;
+  }
+
+  &:disabled {
+    opacity: 0.8;
+  }
+}

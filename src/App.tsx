@@ -1,7 +1,7 @@
-import styles from './App.module.scss'
-import { Main, Area, Wishes, Schedule, Manager } from './sections';
+import { Main, Area, Wishes, Schedule, Manager, Form } from './sections';
 import { AnimatePresence } from 'framer-motion';
 import './styles/index.scss';
+import styles from './App.module.scss'
 
 const App = () => {
   return (
@@ -13,6 +13,7 @@ const App = () => {
       <Wishes />
       <Schedule />
       <Manager />
+      <Form />
     </div>
   )
 }

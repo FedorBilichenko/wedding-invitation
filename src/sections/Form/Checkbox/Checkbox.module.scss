@@ -1,0 +1,43 @@
+@import "styles/mixins";
+
+.container {
+  display: flex;
+  cursor: pointer;
+
+  &__label {
+    margin-left: 10px;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__input-fake {
+    @include animate(border-color);
+
+    position: relative;
+    width: 26px;
+    height: 26px;
+    border: 2px solid lighten($green-leaf, 20);
+    border-radius: 4px;
+    flex-shrink: 0;
+
+    @include hoverable {
+      border-color: $green-leaf;
+    }
+
+    .container_checked & {
+      border-color: $green-leaf;
+    }
+  }
+
+  &__arrow {
+    @include absoluteCenter;
+    @include animate(opacity);
+    opacity: 0;
+
+    .container_checked & {
+      opacity: 1;
+    }
+  }
+}

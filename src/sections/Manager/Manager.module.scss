@@ -4,8 +4,6 @@
   @include sectionContent;
 
   padding: 40px 0;
-  height: 100vh;
-  overflow: hidden;
 
   @include media('<=tablet') {
     @include background;

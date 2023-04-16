@@ -2,8 +2,9 @@ import * as React from 'react';
 
 import backLg from './img/bg-lg.png';
 import backSmall from './img/bg-small.png';
-import styles from './Manager.module.scss';
 import {useWindowSize} from "utils";
+
+import styles from './Manager.module.scss';
 
 const Manager: React.FC = () => {
   const { isPhone } = useWindowSize();
