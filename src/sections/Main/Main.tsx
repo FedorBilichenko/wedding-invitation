@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 
 import Names from './Names';
 import Date from './Date';
+import {useWindowSize} from "utils";
+
 import styles from './Main.module.scss';
 
 const container = {
@@ -24,21 +26,35 @@ const item = {
 };
 
 
-const children = [
-  <div className={styles.main__names}>
-    <Names />
-  </div>,
-  <div className={styles.main__date}>
-    <Date />
-  </div>,
-  <div
-    className={styles.main__text}>
-    <span className={styles['main__text-bold']}>Дорогие родные и друзья,</span><br />
-    Приглашаем вас разделить с нами радость особенного для нас события и стать частью нашей семейной истории
-  </div>
-]
-
 const Main: React.FC = () => {
+  const { isPhone } = useWindowSize();
+
+  const children = isPhone ? [
+    <div>
+      <div className={styles.main__names}>
+        <Names />
+      </div>
+      <div className={styles.main__date}>
+        <Date />
+      </div>
+    </div>]
+    : [
+      <div className={styles.main__names}>
+        <Names />
+      </div>,
+      <div className={styles.main__date}>
+        <Date />
+      </div>
+    ];
+
+  children.push(
+    <div
+      className={styles.main__text}>
+        <span className={styles['main__text-bold']}>Дорогие родные и друзья,</span><br />
+          Приглашаем вас разделить с нами радость особенного для нас события и стать частью нашей семейной истории
+    </div>
+  );
+
   return <div className={styles.main}>
     <motion.div variants={container} initial="hidden" animate="show" className={styles.main__content}>
       {children.map((child, key) =>

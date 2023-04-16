@@ -6,9 +6,27 @@
   background-size: cover;
   position: relative;
 
+  @include media("<=tablet") {
+    background-image: url('./img/bg-tablet.png');
+  }
+
   &__content {
-    @include absoluteCenter;
-    @include lg-limit;
+    @include media('<=tablet') {
+      padding: 60px 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @include media('<=iphoneSE') {
+      padding: 40px 30px;
+    }
+
+    @include media(">tablet") {
+      @include absoluteCenter;
+      @include lg-limit;
+    }
   }
 
   &__names {
@@ -17,13 +35,30 @@
 
   &__date {
     margin-top: 40px;
+
+    @include media('<=iphoneSE') {
+      margin-top: 30px;
+    }
   }
 
   &__text {
     text-transform: uppercase;
-    margin-top: 50px;
     max-width: 544px;
     user-select: none;
+
+    @include media('>tablet') {
+      margin-top: 50px;
+    }
+
+    @include media('<=tablet') {
+      font-size: 14px;
+      line-height: 19px;
+      max-width: 300px;
+    }
+
+    @include media('<=iphoneSE') {
+      max-width: 210px;
+    }
 
     &-bold {
       font-weight: 600;
