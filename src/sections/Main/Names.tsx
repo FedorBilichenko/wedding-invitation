@@ -6,8 +6,8 @@ const Names: React.FC = () => {
   const { isPhone } = useWindowSize();
 
   const size = isPhone ? {
-    width: 309,
-    height: 81
+    width: 286,
+    height: 75
   } : {
     width: 530,
     height: 141

@@ -24,8 +24,8 @@ const Date: React.FC = () => {
     width: 108,
     height: 275
   } : isPhone ? {
-    width: 142,
-    height: 342
+    width: 128,
+    height: 309
   } : {
     width: 530,
     height: 103
