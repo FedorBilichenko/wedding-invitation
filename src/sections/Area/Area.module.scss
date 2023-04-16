@@ -61,6 +61,8 @@
 
     max-width: 346px;
     margin-top: 60px;
+    display: block;
+    color: $black;
 
     @include media('<=tablet') {
       margin-top: 35px;

@@ -13,6 +13,7 @@ import {useWindowSize} from "utils";
 import styles from './Area.module.scss';
 
 const coordinates = [55.935395, 37.334208];
+const url = 'https://yandex.ru/maps/-/CCU8iFhjkB';
 
 const Area: React.FC =() => {
   const {isPhone} = useWindowSize();
@@ -55,10 +56,10 @@ const Area: React.FC =() => {
             <img key={index} alt="slide" className={styles['area__slide-img']} src={slide}  />
         )}
       </Carousel>
-      <div className={styles.area__location}>
+      <a href={url} target="_blank" className={styles.area__location}>
         <span className={styles.area__location_bold}>Panorama Wedding House</span><br/>
         МО, Химки, микрорайон Подрезково, 1В
-      </div>
+      </a>
       <div className={styles.area__map}>
         <YMaps>
           <Map {...size} defaultState={{ center: coordinates, zoom: 15 }}>

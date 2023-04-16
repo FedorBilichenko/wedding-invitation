@@ -1,0 +1,47 @@
+@import "styles/mixins";
+
+.manager {
+  @include sectionContent;
+
+  padding: 40px 0;
+  height: 100vh;
+  overflow: hidden;
+
+  @include media('<=tablet') {
+    @include background;
+
+    padding: 55px 40px 0;
+  }
+
+  &__title {
+    @include sectionTitle;
+  }
+
+  &__content {
+    margin: 30px auto 0;
+    max-width: 590px;
+    position: relative;
+    z-index: 1;
+
+    @include media('<=tablet') {
+      margin-top: 20px;
+    }
+  }
+
+  &__img {
+    width: 1213px;
+    height: 628px;
+    object-fit: contain;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -168px;
+    z-index: 0;
+
+    @include media('<=tablet') {
+      width: 702px;
+      height: 645px;
+      top: -100px;
+    }
+  }
+}
