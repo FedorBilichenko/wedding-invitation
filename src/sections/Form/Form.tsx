@@ -1,9 +1,13 @@
 import * as React from 'react';
 import cn from 'classnames';
+import { initializeApp } from "firebase/app";
+import { AnimatePresence } from 'framer-motion';
+import { getFirestore, collection, getDocs, getDoc, doc, setDoc, addDoc } from 'firebase/firestore/lite';
 import Input from './Input';
 
 import styles from './Form.module.scss';
 import Checkbox from "./Checkbox";
+import Banner from "./Banner";
 
 const availableAlcohol = [
   'Шампанское полусладкое',
@@ -24,12 +28,97 @@ const availableDishes = [
   'Мясо'
 ];
 
-export const Form: React.FC = () => {
+const firebaseConfig = {
+  apiKey: "AIzaSyBbV-AAHmSmEgZqbeeu_hLimkcZfUPb-Dg",
+  authDomain: "wedding-invitation-bff82.firebaseapp.com",
+  projectId: "wedding-invitation-bff82",
+  storageBucket: "wedding-invitation-bff82.appspot.com",
+  messagingSenderId: "506587225924",
+  appId: "1:506587225924:web:0f1e76cc4ad182852a8111"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+type Props = {
+  scrollToTop: () => void;
+}
+
+export const Form: React.FC<Props> = ({ scrollToTop }) => {
+  const [id, setId] = React.useState<string>('');
   const [name, setName] = React.useState<string>('');
   const [lastName, setLastName] = React.useState<string>('');
   const [come, setCome] = React.useState<string>(availableCome[0]);
   const [dish, setDish] = React.useState<string | null>(availableDishes[0]);
   const [alcohol, setAlcohol] = React.useState<string[]>([availableAlcohol[0]]);
+  const [disabled, setDisabled] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [showBanner, setShowBanner] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const init = async () => {
+      console.log(window.location.search)
+      const search = new URLSearchParams(window.location.search);
+      const id = search.get('uid');
+
+      if (!id) {
+        return;
+      }
+
+      setId(id);
+
+      try {
+        const docRef = doc(db, 'users', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data: Partial<{ lastName: string; name: string; alcohol: string[]; come: string; dish: string }> = docSnap.data();
+
+          const name = data.name || '';
+          const lastName = data.lastName || '';
+
+          setName(name);
+          setLastName(lastName);
+
+          if (data.alcohol !== undefined) {
+            setAlcohol(data.alcohol);
+          }
+          if (data.come !== undefined) {
+            setCome(data.come);
+          }
+          if (data.dish !== undefined) {
+            setDish(data.dish)
+          }
+
+          if (name && lastName) {
+            setDisabled(true);
+          }
+        }
+      } catch (e) {
+        console.log('firebase get user error');
+      }
+    }
+
+    init();
+  }, []);
+
+  const setData = async () => {
+    try {
+      setIsLoading(true);
+      if (id) {
+        const docRef = doc(db, 'users', id);
+        await setDoc(docRef, { alcohol, dish, come }, { merge: true });
+      } else {
+        await addDoc(collection(db, 'users'), { name, lastName, alcohol, dish, come, notRegistered: true });
+      }
+      setShowBanner(true);
+      setTimeout(scrollToTop, 500);
+      setTimeout(() => setShowBanner(false), 2000);
+      setIsLoading(false);
+    } catch (e) {
+      console.log('firebase set user error');
+      setIsLoading(false);
+    }
+  }
 
   const handleAlco = (value: boolean, alco: string) => {
     const inList = alcohol.includes(alco);
@@ -45,13 +134,17 @@ export const Form: React.FC = () => {
     }
   }
 
-  return <div className={styles.form}>
+  return <>
+    <AnimatePresence>
+      {showBanner && <Banner />}
+    </AnimatePresence>
+    <div className={styles.form}>
     <div className={styles.form__title}>Подтвердите, пожалуйста, свое присутствие на&nbsp;нашем торжестве</div>
     <div className={styles.form__description}>Будем ждать ответ до&nbsp;01.06.2023</div>
     <form onSubmit={e => e.preventDefault()} className={styles.form__content}>
       <div className={styles.form__inputs}>
-        <Input value={name} onChange={setName} placeholder="Имя" />
-        <Input value={lastName} onChange={setLastName} placeholder="Фамилия" />
+        <Input disabled={disabled} value={name} onChange={setName} placeholder="Имя" />
+        <Input disabled={disabled} value={lastName} onChange={setLastName} placeholder="Фамилия" />
       </div>
       <div className={cn(styles['form__section-title'], styles['form__section-title_bold'])}>
         Присутствие:
@@ -92,9 +185,10 @@ export const Form: React.FC = () => {
         )}
       </>
       }
-      <button className={styles.form__button}>Отправить</button>
+      <button className={styles.form__button} onClick={setData} disabled={isLoading}>{isLoading ? 'Отправляю...' : 'Отправить'}</button>
     </form>
   </div>
+    </>
 };
 
 export default Form;

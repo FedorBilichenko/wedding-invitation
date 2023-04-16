@@ -96,3 +96,13 @@ $breakpoints: (
     @content;
   }
 }
+
+@mixin backgroundImage {
+  height: 100vh;
+  background: url('../sections/img/bg-lg.png') no-repeat center;
+  background-size: cover;
+
+  @include media("<=tablet") {
+    background-image: url('../sections/img/bg-tablet.png');
+  }
+}

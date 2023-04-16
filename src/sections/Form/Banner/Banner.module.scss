@@ -1,0 +1,28 @@
+@import "styles/mixins";
+
+.banner {
+  @include backgroundImage;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+
+  &__title {
+    @include sectionTitle;
+    @include absoluteCenter;
+
+    max-width: 509px;
+    text-align: left;
+    top: calc(50% - 60px);
+    left: calc(50% - 100px);
+
+    @include media('<=tablet') {
+      max-width: 310px;
+      text-align: center;
+      top: calc(50% - 220px);
+      left: 50%;
+    }
+  }
+}

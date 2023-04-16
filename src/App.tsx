@@ -2,10 +2,21 @@ import { Main, Area, Wishes, Schedule, Manager, Form } from './sections';
 import { AnimatePresence } from 'framer-motion';
 import './styles/index.scss';
 import styles from './App.module.scss'
+import {useRef} from "react";
 
 const App = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const scrollToTop = () => {
+    if (!ref.current) {
+      return;
+    }
+
+    ref.current.scrollTop = 0;
+  }
+
   return (
-    <div className={styles.App}>
+    <div ref={ref} className={styles.App}>
       <AnimatePresence>
         <Main />
       </AnimatePresence>
@@ -13,7 +24,7 @@ const App = () => {
       <Wishes />
       <Schedule />
       <Manager />
-      <Form />
+      <Form scrollToTop={scrollToTop} />
     </div>
   )
 }

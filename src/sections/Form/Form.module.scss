@@ -100,5 +100,9 @@
       outline: none;
       background-color: darken($green-leaf, 10);
     }
+
+    &:disabled {
+      background-color: lighten($green-leaf, 10);
+    }
   }
 }
