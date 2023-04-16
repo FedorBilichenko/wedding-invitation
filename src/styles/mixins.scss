@@ -29,3 +29,7 @@ $breakpoints: (
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin cormorantFont {
+  font-family: 'Cormorant', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}

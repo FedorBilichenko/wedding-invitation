@@ -1,5 +1,9 @@
 @import "styles";
 
 .App {
+  @include hideScrollbar;
+
   background: $green-gradient;
+  height: 100vh;
+  overflow-y: auto;
 }
