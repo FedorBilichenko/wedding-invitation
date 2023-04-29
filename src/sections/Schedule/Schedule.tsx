@@ -3,6 +3,7 @@ import * as React from 'react';
 import Item, {ItemProps} from './Item';
 
 import styles from './Schedule.module.scss';
+import {useInView} from "react-intersection-observer";
 
 const items: ItemProps[] = [
   {
@@ -33,10 +34,12 @@ const items: ItemProps[] = [
 ]
 
 const Schedule: React.FC = () => {
+  const [ref, inView] = useInView();
+
   return <div className={styles.schedule}>
     <div className={styles.schedule__title}>Программа дня</div>
-    <div className={styles.schedule__content}>
-      {items.map((item, index) => <Item key={index} {...item} className={styles.schedule__item} />)}
+    <div className={styles.schedule__content} ref={ref}>
+      {items.map((item, index) => <Item key={index} {...item} delay={index / 2} inView={inView} className={styles.schedule__item} />)}
     </div>
   </div>
 };

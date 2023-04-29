@@ -7,7 +7,7 @@
 
   &__content {
     @include media('<=tablet') {
-      padding: 50px 30px;
+      padding: 67px 40px 60px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -48,11 +48,7 @@
     @include media('<=tablet') {
       font-size: 14px;
       line-height: 19px;
-      max-width: 300px;
-    }
-
-    @include media('<=iphoneSE') {
-      max-width: 210px;
+      max-width: 310px;
     }
 
     &-bold {

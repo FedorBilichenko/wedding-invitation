@@ -1,4 +1,4 @@
-import { Main, Area, Wishes, Schedule, Manager, Form } from './sections';
+import { Main, Area, Wishes, Schedule, Manager, Form, DressCode } from './sections';
 import { AnimatePresence } from 'framer-motion';
 import './styles/index.scss';
 import styles from './App.module.scss'
@@ -23,6 +23,7 @@ const App = () => {
       <Area />
       <Wishes />
       <Schedule />
+      <DressCode />
       <Manager />
       <Form scrollToTop={scrollToTop} />
     </div>

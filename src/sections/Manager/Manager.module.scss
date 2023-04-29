@@ -27,20 +27,42 @@
     }
   }
 
-  &__img {
-    width: 1213px;
-    height: 628px;
-    object-fit: contain;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -168px;
-    z-index: 0;
+  &__imgs {
+    display: flex;
+    padding-bottom: 116px;
+    justify-content: center;
 
     @include media('<=tablet') {
-      width: 702px;
-      height: 645px;
-      top: -100px;
+      display: block;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__img {
+    width: 566px;
+    object-fit: contain;
+
+    @include media('<=tablet') {
+      width: 491px;
+    }
+
+    &_1 {
+      position: relative;
+      top: 112px;
+
+      @include media('<=tablet') {
+        display: block;
+        top: 0;
+      }
+    }
+
+    &_2 {
+      @include media('<=tablet') {
+        left: -100px;
+        position: relative;
+        transform: rotate(19deg);
+        top: -20px;
+      }
     }
   }
 }

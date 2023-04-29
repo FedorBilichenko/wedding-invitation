@@ -44,20 +44,20 @@ type Props = {
   scrollToTop: () => void;
 }
 
+export type Sex = 'male' | 'female';
+
 export const Form: React.FC<Props> = ({ scrollToTop }) => {
   const [id, setId] = React.useState<string>('');
   const [name, setName] = React.useState<string>('');
-  const [lastName, setLastName] = React.useState<string>('');
+  const [sex, setSex] = React.useState<Sex>('male');
   const [come, setCome] = React.useState<string>(availableCome[0]);
   const [dish, setDish] = React.useState<string | null>(availableDishes[0]);
   const [alcohol, setAlcohol] = React.useState<string[]>([availableAlcohol[0]]);
-  const [disabled, setDisabled] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [showBanner, setShowBanner] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const init = async () => {
-      console.log(window.location.search)
       const search = new URLSearchParams(window.location.search);
       const id = search.get('uid');
 
@@ -71,13 +71,11 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
         const docRef = doc(db, 'users', id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          const data: Partial<{ lastName: string; name: string; alcohol: string[]; come: string; dish: string }> = docSnap.data();
+          const data: Partial<{ name: string; alcohol: string[]; come: string; dish: string; sex: 'male' | 'female' }> = docSnap.data();
 
           const name = data.name || '';
-          const lastName = data.lastName || '';
 
           setName(name);
-          setLastName(lastName);
 
           if (data.alcohol !== undefined) {
             setAlcohol(data.alcohol);
@@ -88,9 +86,8 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
           if (data.dish !== undefined) {
             setDish(data.dish)
           }
-
-          if (name && lastName) {
-            setDisabled(true);
+          if (data.sex !== undefined) {
+            setSex(data.sex)
           }
         }
       } catch (e) {
@@ -102,14 +99,13 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
   }, []);
 
   const setData = async () => {
+    if (!id) {
+      return;
+    }
     try {
       setIsLoading(true);
-      if (id) {
-        const docRef = doc(db, 'users', id);
-        await setDoc(docRef, { alcohol, dish, come }, { merge: true });
-      } else {
-        await addDoc(collection(db, 'users'), { name, lastName, alcohol, dish, come, notRegistered: true });
-      }
+      const docRef = doc(db, 'users', id);
+      await setDoc(docRef, { alcohol, dish, come }, { merge: true });
       setShowBanner(true);
       setTimeout(scrollToTop, 500);
       setTimeout(() => setShowBanner(false), 2000);
@@ -134,18 +130,18 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
     }
   }
 
+  if (!id) {
+    return null;
+  }
+
   return <>
     <AnimatePresence>
       {showBanner && <Banner />}
     </AnimatePresence>
     <div className={styles.form}>
-    <div className={styles.form__title}>Подтвердите, пожалуйста, свое присутствие на&nbsp;нашем торжестве</div>
+    <div className={styles.form__title}>{sex === 'male' ? 'Дорогой' : 'Дорогая'} {name}, подтвердите, пожалуйста, свое присутствие на&nbsp;нашем торжестве</div>
     <div className={styles.form__description}>Будем ждать ответ до&nbsp;01.06.2023</div>
     <form onSubmit={e => e.preventDefault()} className={styles.form__content}>
-      <div className={styles.form__inputs}>
-        <Input disabled={disabled} value={name} onChange={setName} placeholder="Имя" />
-        <Input disabled={disabled} value={lastName} onChange={setLastName} placeholder="Фамилия" />
-      </div>
       <div className={cn(styles['form__section-title'], styles['form__section-title_bold'])}>
         Присутствие:
       </div>

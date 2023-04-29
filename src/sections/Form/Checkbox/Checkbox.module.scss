@@ -19,7 +19,6 @@
     width: 26px;
     height: 26px;
     border: 2px solid lighten($green-leaf, 20);
-    border-radius: 4px;
     flex-shrink: 0;
 
     @include hoverable {

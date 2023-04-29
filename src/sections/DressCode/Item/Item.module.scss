@@ -1,0 +1,41 @@
+@import "styles/mixins";
+
+.item {
+  border: 1px solid $white;
+  padding: 19px;
+  cursor: pointer;
+  position: relative;
+
+  @include media('<=tablet') {
+    height: 100%;
+    padding: 0;
+  }
+
+  &__text {
+    @include sectionContent;
+
+    word-break: break-all;
+    overflow: hidden;
+    max-height: 27px;
+    display: -webkit-box;
+    -webkit-line-clamp: 27;
+    -webkit-box-orient: vertical;
+
+    @include media('<=tablet') {
+      transform: rotate(-90deg);
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      width: 200px;
+      z-index: 1;
+      transform-origin: left;
+
+      max-height: unset;
+      word-break: unset;
+      overflow: unset;
+      display: unset;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+    }
+  }
+}

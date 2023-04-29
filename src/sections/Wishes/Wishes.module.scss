@@ -1,7 +1,7 @@
 @import "styles/mixins";
 
 .wishes {
-  padding: 30px 0;
+  padding: 30px 0 60px;
   overflow: hidden;
 
   @include media('<=tablet') {
@@ -25,18 +25,51 @@
     }
   }
 
+  &__imgs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+    width: 100%;
+    margin: 20px auto 0;
+  }
+
   &__img {
-    width: 825px;
+    width: 100%;
     object-fit: contain;
-    margin-top: 30px;
     position: relative;
-    left: calc(50% + 28px);
-    transform: translateX(-50%);
 
     @include media('<=tablet') {
-      width: 706px;
-      left: calc(50% - 40px);
-      top: -40px;
+      width: 250px;
+    }
+
+    &_1 {
+      top: 23px;
+      left: -42px;
+
+      @include media('<=tablet') {
+        top: -50px;
+        left: -200px;
+      }
+    }
+
+    &_2 {
+      left: 53px;
+      top: 100px;
+
+      @include media('<=tablet') {
+        left: -105px;
+        top: 0;
+      }
+    }
+
+    &_3 {
+      right: -143px;
+      top: 33px;
+
+      @include media('<=tablet') {
+        right: 0;
+        top: -70px;
+      }
     }
   }
 }
