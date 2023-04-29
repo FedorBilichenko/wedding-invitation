@@ -31,8 +31,8 @@
   &__date {
     margin-top: 40px;
 
-    @include media('<=iphoneSE') {
-      margin-top: 20px;
+    @include media(">tablet") {
+      margin-top: 30px;
     }
   }
 
