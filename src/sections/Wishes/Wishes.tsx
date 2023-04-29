@@ -9,7 +9,7 @@ import styles from './Wishes.module.scss';
 
 const img1Variants = {
   visible: { rotate: -28, transition: { duration: 1 } },
-  hidden: { rotate: -11 }
+  hidden: { rotate: -40 }
 }
 
 const img2Variants = {
