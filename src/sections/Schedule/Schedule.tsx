@@ -7,7 +7,7 @@ import {useInView} from "react-intersection-observer";
 
 const items: ItemProps[] = [
   {
-    time: '14:00',
+    time: '14:30',
     title: <>Сбор гостей, фуршет</>,
     content: <>Собираясь на&nbsp;мероприятие, просим взять с&nbsp;собой ваши прекрасные улыбки и&nbsp;хорошее настроение</>
   },

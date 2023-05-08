@@ -10,10 +10,12 @@ import Checkbox from "./Checkbox";
 import Banner from "./Banner";
 
 const availableAlcohol = [
-  'Шампанское полусладкое',
+  'Шампанское',
+  'Белое сухое вино',
   'Красное сухое вино',
-  'Белое полусладкое вино',
-  'Ром',
+  'Белое полусухое вино',
+  'Красное полусухое вино',
+  'Коньяк',
   'Виски',
   'Водка',
 ];
@@ -140,7 +142,7 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
     </AnimatePresence>
     <div className={styles.form}>
     <div className={styles.form__title}>{sex === 'male' ? 'Дорогой' : 'Дорогая'} {name}, подтвердите, пожалуйста, свое присутствие на&nbsp;нашем торжестве</div>
-    <div className={styles.form__description}>Будем ждать ответ до&nbsp;01.06.2023</div>
+    <div className={styles.form__description}>Будем ждать ответ до&nbsp;20.06.2023</div>
     <form onSubmit={e => e.preventDefault()} className={styles.form__content}>
       <div className={cn(styles['form__section-title'], styles['form__section-title_bold'])}>
         Присутствие:

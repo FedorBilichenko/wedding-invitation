@@ -7,29 +7,19 @@ import {useInView} from "react-intersection-observer";
 
 const items: ItemProps[] = [
   {
-    name: 'Platinum',
-    background: '#EDEAEB',
-    color: '#2D2D34'
+    background: '#fdf4e3',
   },
   {
-    name: 'Grey',
-    background: '#E8E7EC',
-    color: '#2D2D34'
+    background: '#debcb2',
   },
   {
-    name: 'White Smoke',
-    background: '#C0C0C0',
-    color: '#2D2D34'
+    background: '#e8e1db',
   },
   {
-    name: 'Green Leaf',
-    background: '#4E6E51',
-    color: '#FFFFFF'
+    background: '#bbc6c8',
   },
   {
-    name: 'Green',
-    background: '#1D4E29',
-    color: '#FFFFFF'
+    background: '#b3cfbe',
   }
 ]
 
@@ -38,9 +28,9 @@ const DressCode: React.FC = () => {
 
   return <div className={styles.dress}>
     <div className={styles.dress__title}>Дресс-код</div>
-    <div className={styles.dress__text}>Нам будет очень приятно, если вы&nbsp;поддержите цветовую гамму торжества и&nbsp;выберете наряды в&nbsp;соответствии  с&nbsp;цветовой палитрой нашей свадьбы</div>
+    <div className={styles.dress__text}>Нам будет очень приятно, если вы&nbsp;поддержите цветовую гамму торжества и&nbsp;выберете наряды в пастельных тонах.<br />Например:</div>
     <div className={styles.dress__content} ref={ref}>
-      {items.map((item, index) => <Item className={styles.dress__item} delay={index/2} inView={inView} key={item.name} {...item} />)}
+      {items.map((item, index) => <Item className={styles.dress__item} delay={index/2} inView={inView} key={item.background} {...item} />)}
     </div>
   </div>
 };
