@@ -42,7 +42,9 @@ const Wishes: React.FC = () => {
 
   return <div className={styles.wishes}>
     <div className={styles.wishes__title}>Пожелания</div>
-    <div className={styles.wishes__content}>Главное для нас&nbsp;&mdash; ваше внимание, а&nbsp;радость доставит любой подарок в&nbsp;конверте!</div>
+    <div className={styles.wishes__content}>
+      К сожалению, мы не успеем насладиться красотой подаренных цветов.<br />
+      Главное для нас&nbsp;&mdash; ваше внимание, а&nbsp;радость доставит любой подарок в&nbsp;конверте!</div>
     <div className={styles.wishes__imgs}>
       <motion.img variants={img1Variants} animate={controls1} className={cn(styles.wishes__img, styles.wishes__img_1)} src={img1} />
       <motion.img variants={img2Variants} animate={controls2} className={cn(styles.wishes__img, styles.wishes__img_2)} src={img2} />
