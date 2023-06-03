@@ -51,7 +51,7 @@ export type Sex = 'male' | 'female';
 export const Form: React.FC<Props> = ({ scrollToTop }) => {
   const [id, setId] = React.useState<string>('');
   const [name, setName] = React.useState<string>('');
-  const [sex, setSex] = React.useState<Sex>('male');
+  const [address, setAddress] = React.useState<string>('');
   const [come, setCome] = React.useState<string>(availableCome[0]);
   const [dish, setDish] = React.useState<string | null>(availableDishes[0]);
   const [alcohol, setAlcohol] = React.useState<string[]>([availableAlcohol[0]]);
@@ -73,7 +73,7 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
         const docRef = doc(db, 'users', id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          const data: Partial<{ name: string; alcohol: string[]; come: string; dish: string; sex: 'male' | 'female' }> = docSnap.data();
+          const data: Partial<{ name: string; alcohol: string[]; come: string; dish: string; address: string }> = docSnap.data();
 
           const name = data.name || '';
 
@@ -88,8 +88,8 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
           if (data.dish !== undefined) {
             setDish(data.dish)
           }
-          if (data.sex !== undefined) {
-            setSex(data.sex)
+          if (data.address !== undefined) {
+            setAddress(data.address)
           }
         }
       } catch (e) {
@@ -141,7 +141,7 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
       {showBanner && <Banner />}
     </AnimatePresence>
     <div className={styles.form}>
-    <div className={styles.form__title}>{sex === 'male' ? 'Дорогой' : 'Дорогая'} {name}, подтвердите, пожалуйста, свое присутствие на&nbsp;нашем торжестве</div>
+    <div className={styles.form__title}>{address}</div>
     <div className={styles.form__description}>Будем ждать ответ до&nbsp;20.06.2023</div>
     <form onSubmit={e => e.preventDefault()} className={styles.form__content}>
       <div className={cn(styles['form__section-title'], styles['form__section-title_bold'])}>
