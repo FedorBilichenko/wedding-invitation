@@ -107,7 +107,7 @@ export const Form: React.FC<Props> = ({ scrollToTop }) => {
     try {
       setIsLoading(true);
       const docRef = doc(db, 'users', id);
-      await setDoc(docRef, { alcohol, dish, come }, { merge: true });
+      await setDoc(docRef, { alcohol, dish, come, submit: true }, { merge: true });
       setShowBanner(true);
       setTimeout(scrollToTop, 500);
       setTimeout(() => setShowBanner(false), 2000);
