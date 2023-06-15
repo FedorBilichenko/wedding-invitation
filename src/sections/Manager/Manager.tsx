@@ -41,7 +41,7 @@ const Manager: React.FC = () => {
     <div className={styles.manager__content}>По&nbsp;всем вопросам обращайтесь к&nbsp;нашему свадебному организатору</div>
     <div className={styles.manager__content}>
       <div className={styles.manager_bold}>Изольда</div>
-      <a href={`tel:+79715086888`}>+7 (971) 508-68-88</a>
+      <a href={`tel:+79175086888`}>+7 (917) 508-68-88</a>
     </div>
     <div className={styles.manager__imgs} ref={ref}>
       <motion.img src={img1} animate={controls1} variants={variants2} className={cn(styles.manager__img, styles.manager__img_1)} alt="back" />
